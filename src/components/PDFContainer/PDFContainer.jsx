@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import ToolBar from "../ToolBar";
 import "./Styles.css";
 import img from "../../pdf_media/img.png";
+import ReactPdf from "../ReactPdf";
 
 export default function PDFContainer({ match: { params } }) {
   const { slug } = params;
@@ -47,12 +48,18 @@ export default function PDFContainer({ match: { params } }) {
             class="responsive-wrapper responsive-wrapper-padding-bottom-90pct"
             style={{ overflow: "auto" }}
           >
-            <iframe title="reader" src={`${pdfPage.src}#toolbar=0`}></iframe>
+            <iframe
+              title="reader"
+              src={`https://docs.google.com/viewerng/viewer?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf`}
+            ></iframe>
           </div>
         </div>
       </Grid>
       <Grid item xs={2}>
         <img src={img} alt="Context ads" />
+      </Grid>
+      <Grid xs={12}>
+        <ReactPdf />
       </Grid>
     </Grid>
   );
