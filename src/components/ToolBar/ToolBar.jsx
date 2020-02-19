@@ -50,15 +50,15 @@ export default function ToolBar({
           <NavigateBeforeIcon />
         </Button>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item lg={6} xs={12}>
             <div className={classes.text}>
               <Typography
                 align="center"
                 variant="h6"
-              >{`Page: ${currentPageIndex} / ${items.length}`}</Typography>
+              >{`${currentPageIndex}/${items.length}`}</Typography>
             </div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item lg={6} xs={12}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Page</InputLabel>
               <Select
