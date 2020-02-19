@@ -50,11 +50,11 @@ export default function PDFContainer({ slug }) {
           currentPageIndex={currentPageIndex}
         />
       </Grid>
-      <Grid item lg={3} xs={12} justify="center">
-        <img src={img} alt="Context ads" className={classes.img} />
-      </Grid>
       <Grid item lg={9} xs={12}>
         <PdfJs src={pdfPage.src} />
+      </Grid>
+      <Grid item lg={3} xs={12} justify="center">
+        <img src={img} alt="Context ads" className={classes.img} />
       </Grid>
     </Grid>
   );

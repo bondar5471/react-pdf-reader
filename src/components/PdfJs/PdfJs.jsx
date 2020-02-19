@@ -1,11 +1,28 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-
 import pdfjs from "pdfjs-dist";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles(() => ({
+  img: {
+    maxWidth: "100%",
+    height: "auto",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block"
+  },
+  canvas: {
+    maxWidth: "100%",
+    height: "auto",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block"
+  }
+}));
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 const PdfJs = ({ src }) => {
+  const classes = useStyles();
   const canvasRef = useRef(null);
   let isPdf = src.endsWith("pdf");
   useEffect(() => {
@@ -15,17 +32,18 @@ const PdfJs = ({ src }) => {
   }, [src]);
 
   return (
-    <div>
+    <>
       {isPdf ? (
         <canvas
+          className={classes.canvas}
           ref={canvasRef}
           width={window.innerWidth}
           height={window.innerHeight}
         />
       ) : (
-        <img src={src}/>
+        <img src={src} className={classes.img} />
       )}
-    </div>
+    </>
   );
 };
 
