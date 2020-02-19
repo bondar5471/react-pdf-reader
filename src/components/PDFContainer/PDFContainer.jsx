@@ -50,19 +50,6 @@ export default function PDFContainer({ slug }) {
           currentPageIndex={currentPageIndex}
         />
       </Grid>
-      <Grid item lg={9} xs={12}>
-        <div
-          id="Iframe-Cicis-Menu-To-Go"
-          class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz"
-        >
-          <div
-            class="responsive-wrapper responsive-wrapper-padding-bottom-90pct"
-            style={{ overflow: "auto" }}
-          >
-            <iframe title="reader" src={`${pdfPage.src}#toolbar=0`}></iframe>
-          </div>
-        </div>
-      </Grid>
       <Grid item lg={3} xs={12} justify="center">
         <img src={img} alt="Context ads" className={classes.img} />
       </Grid>
