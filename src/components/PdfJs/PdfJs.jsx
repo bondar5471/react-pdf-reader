@@ -62,6 +62,10 @@ const fetchPdf = async (src, canvasRef) => {
   const canvas = canvasRef.current;
 
   const context = canvas.getContext("2d");
+  context.fillRect(10,10,300,300)
+  context.fillStyle = "#ff0";
+  context.globalCompositeOperation = "multiply";
+  debugger;
   canvas.height = viewport.height;
   canvas.width = viewport.width;
 
