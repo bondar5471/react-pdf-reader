@@ -9,8 +9,18 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { newsPDF } from '../../helpers/items';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles(() => ({
+  listContainer: {
+    height: '300px',
+    overflow: 'auto'
+  },
+}));
 
 export default function SearchContainer({ setCurrentPage, setCoordinates }) {
+  const classes = useStyles();
   const [suggestions, setSuggestion] = useState(null);
   const renderSuggestions = async (event) => {
     event.preventDefault();
@@ -37,8 +47,6 @@ export default function SearchContainer({ setCurrentPage, setCoordinates }) {
       page = isOdd(page) ? (page - 1) : (page + 1);
     }
     let currentItem = find(newsPDF, (item) => item.number === page);
-    console.log(newsPDF)
-    debugger
     setCoordinates(coord);
     setCurrentPage(currentItem.index);
   };
@@ -59,14 +67,14 @@ export default function SearchContainer({ setCurrentPage, setCoordinates }) {
       {suggestions === null ? null: (
         <>
           { suggestions.length === 0 ? (<h1>Not found</h1>) : (
-          <List>
+          <List className={classes.listContainer}>
             {suggestions.map((suggestion) => (
               <ListItem
                 onClick={() => goToPage(suggestion.page, suggestion.coord)}
                 key={suggestion.text}
                 button
               >
-                <ListItemText primary={`${suggestion.page} ${suggestion.text} ${suggestion.coord}`} />
+                <ListItemText primary={`Page: ${suggestion.page} (${suggestion.text})`} />
               </ListItem>
             ))}
           </List>
