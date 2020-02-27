@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   ButtonGroup,
@@ -7,34 +8,34 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+  MenuItem,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "& > *": {
-      margin: theme.spacing(1)
-    }
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   text: {
-    paddingTop: "8px"
-  }
+    paddingTop: '8px',
+  },
 }));
 
 export default function ToolBar({
   setcurrentPageIndex,
   items,
-  currentPageIndex
+  currentPageIndex,
 }) {
   const classes = useStyles();
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setcurrentPageIndex(event.target.value);
   };
 
@@ -55,7 +56,9 @@ export default function ToolBar({
               <Typography
                 align="center"
                 variant="h6"
-              >{`${currentPageIndex}/${items.length}`}</Typography>
+              >
+                {`${currentPageIndex}/${items.length}`}
+              </Typography>
             </div>
           </Grid>
           <Grid item lg={6} xs={12}>
@@ -67,10 +70,11 @@ export default function ToolBar({
                 value={currentPageIndex}
                 onChange={handleChange}
               >
-                {items.map(item => (
+                {items.map((item) => (
                   <MenuItem key={item.index} value={item.index}>
-                    {" "}
-                    {item.index}{" "}
+                    {' '}
+                    {item.index}
+                    {' '}
                   </MenuItem>
                 ))}
               </Select>
@@ -89,3 +93,9 @@ export default function ToolBar({
     </div>
   );
 }
+
+ToolBar.propTypes = {
+  items: PropTypes.objectOf(Object).isRequired,
+  setcurrentPageIndex: PropTypes.func.isRequired,
+  currentPageIndex: PropTypes.string.isRequired
+};

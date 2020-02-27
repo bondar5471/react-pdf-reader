@@ -1,3 +1,3 @@
-import ADSPage from "./ADSPage";
+import ADSPage from './ADSPage';
 
 export default ADSPage;
