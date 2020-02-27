@@ -143,10 +143,6 @@ export default function SideBar({ match: { params } }) {
               <ListItemIcon />
               <ListItemText primary="_0_0_0_Optimized.pdf" />
             </ListItem>
-            <ListItem button component={Link} to="/news/docPDF">
-              <ListItemIcon />
-              <ListItemText primary="PrXML - The Preservation Markup Language.pdf" />
-            </ListItem>
           </List>
           <Divider />
           <img className={classes.img} src={image} alt="Conext ads" />
