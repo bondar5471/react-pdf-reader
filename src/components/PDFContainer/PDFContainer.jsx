@@ -54,9 +54,6 @@ export default function PDFContainer({ slug }) {
         />
       </Grid>
       <PdfJs src={pdfPage.src} coords={coordinates} />
-      <Grid item lg={12} xs={12} justify="center">
-        <img src={img} alt="Context ads" className={classes.img} />
-      </Grid>
     </Grid>
   );
 }
