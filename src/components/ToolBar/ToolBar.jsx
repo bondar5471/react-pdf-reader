@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   ButtonGroup,
@@ -9,47 +9,35 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  TextField
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "& > *": {
-      margin: theme.spacing(1)
-    }
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   text: {
-    paddingTop: "8px"
-  }
+    paddingTop: '8px',
+  },
 }));
 
 export default function ToolBar({
   setcurrentPageIndex,
   items,
-  currentPageIndex
+  currentPageIndex,
 }) {
   const classes = useStyles();
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setcurrentPageIndex(event.target.value);
   };
-
-  const onSearch = (event) => {
-    event.preventDefault();
-    const data = event.target.value;
-    axios.get(`https://searchpaper.herokuapp.com/search`, { query: data })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-    console.log(event.target.value)
-  }
 
   return (
     <div className={classes.root}>
@@ -63,15 +51,14 @@ export default function ToolBar({
           <NavigateBeforeIcon />
         </Button>
         <Grid container>
-          <Grid item xs={12}>
-            <TextField fullWidth label="Search" variant="outlined" onChange={event => onSearch(event)} />
-          </Grid>
           <Grid item lg={6} xs={12}>
             <div className={classes.text}>
               <Typography
                 align="center"
                 variant="h6"
-              >{`${currentPageIndex}/${items.length}`}</Typography>
+              >
+                {`${currentPageIndex}/${items.length}`}
+              </Typography>
             </div>
           </Grid>
           <Grid item lg={6} xs={12}>
@@ -83,10 +70,11 @@ export default function ToolBar({
                 value={currentPageIndex}
                 onChange={handleChange}
               >
-                {items.map(item => (
+                {items.map((item) => (
                   <MenuItem key={item.index} value={item.index}>
-                    {" "}
-                    {item.index}{" "}
+                    {' '}
+                    {item.index}
+                    {' '}
                   </MenuItem>
                 ))}
               </Select>
@@ -105,3 +93,9 @@ export default function ToolBar({
     </div>
   );
 }
+
+ToolBar.propTypes = {
+  items: PropTypes.objectOf(Object).isRequired,
+  setcurrentPageIndex: PropTypes.func.isRequired,
+  currentPageIndex: PropTypes.string.isRequired
+};

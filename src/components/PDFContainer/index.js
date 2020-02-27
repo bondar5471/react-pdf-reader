@@ -1,3 +1,3 @@
-import PDFContainer from "./PDFContainer";
+import PDFContainer from './PDFContainer';
 
 export default PDFContainer;

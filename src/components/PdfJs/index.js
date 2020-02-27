@@ -1,3 +1,3 @@
-import PdfJs from "./PdfJs";
+import PdfJs from './PdfJs';
 
 export default PdfJs;
