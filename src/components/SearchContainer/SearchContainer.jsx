@@ -28,14 +28,17 @@ export default function SearchContainer({ setCurrentPage, setCoordinates }) {
     }
   };
 
-
   function isOdd(n) {
     return Math.abs(n % 2) === 1;
   }
 
   const goToPage = (page, coord) => {
-    page = isOdd(page) ? (page - 1) : (page + 1);
-    const currentItem = find(newsPDF, (item) => item.number === page);
+    if (page > 1) {
+      page = isOdd(page) ? (page - 1) : (page + 1);
+    }
+    let currentItem = find(newsPDF, (item) => item.number === page);
+    console.log(newsPDF)
+    debugger
     setCoordinates(coord);
     setCurrentPage(currentItem.index);
   };
@@ -51,7 +54,7 @@ export default function SearchContainer({ setCurrentPage, setCoordinates }) {
           ),
         }}
         onChange={(event) => renderSuggestions(event)}
-        fullWidth 
+        fullWidth
       />
       {suggestions === null ? null: (
         <>
@@ -73,7 +76,6 @@ export default function SearchContainer({ setCurrentPage, setCoordinates }) {
     </div>
   );
 }
-
 
 SearchContainer.propTypes = {
   setCurrentPage: PropTypes.func.isRequired,
