@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { docPDF, newsPDF } from '../../helpers/items';
 import ToolBar from '../ToolBar';
 import './Styles.css';
-import img from '../../pdf_media/img.png';
 import PdfJs from '../PdfJs';
 import SearchContainer from '../SearchContainer';
 
@@ -42,7 +41,7 @@ export default function PDFContainer({ slug }) {
   }, [slug]);
   const pdfPage = find(currentPDF, (page) => page.index === currentPageIndex);
   return (
-    <Grid container>
+    <Grid container justify='center'>
       <Grid item lg={12} xs={12}>
         <SearchContainer setCurrentPage={setcurrentPageIndex} setCoordinates={setCoordinates} />
       </Grid>

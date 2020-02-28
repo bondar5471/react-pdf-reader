@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import {
   Button,
   ButtonGroup,
-  Grid,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -17,6 +11,8 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    marginLeft: '20%',
+    marginRight: '20%',
     flexDirection: 'column',
     alignItems: 'center',
     '& > *': {
@@ -35,10 +31,6 @@ export default function ToolBar({
 }) {
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setcurrentPageIndex(event.target.value);
-  };
-
   return (
     <div className={classes.root}>
       <ButtonGroup color="inherit" variant="contained" fullWidth>
@@ -48,46 +40,15 @@ export default function ToolBar({
             setcurrentPageIndex(currentPageIndex - 1);
           }}
         >
-          <NavigateBeforeIcon />
+          <NavigateBeforeIcon fontSize='large' />
         </Button>
-        <Grid container>
-          <Grid item lg={6} xs={12}>
-            <div className={classes.text}>
-              <Typography
-                align="center"
-                variant="h6"
-              >
-                {`${currentPageIndex}/${items.length}`}
-              </Typography>
-            </div>
-          </Grid>
-          <Grid item lg={6} xs={12}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Page</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={currentPageIndex}
-                onChange={handleChange}
-              >
-                {items.map((item) => (
-                  <MenuItem key={item.index} value={item.index}>
-                    {' '}
-                    {item.index}
-                    {' '}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
         <Button
           disabled={currentPageIndex === items.length}
           onClick={() => {
             setcurrentPageIndex(currentPageIndex + 1);
           }}
         >
-          <NavigateNextIcon />
+          <NavigateNextIcon fontSize='large' />
         </Button>
       </ButtonGroup>
     </div>
